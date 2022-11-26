@@ -1,20 +1,8 @@
 import React from "react";
 
-export default function InputTodo({ value, setValue, setTodoData }) {
+export default function InputTodo({ value, setValue, onSubmit }) {
   const onChange = (e) => {
     setValue(e.target.value);
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    let newTodoData = {
-      id: Date.now(),
-      title: value,
-      checked: false,
-    };
-    setTodoData((prev) => [...prev, newTodoData]);
-    setValue("");
   };
 
   return (
