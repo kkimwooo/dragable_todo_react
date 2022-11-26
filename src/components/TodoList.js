@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import React from "react";
 
 export default function TodoList({ todoData, setTodoData }) {
