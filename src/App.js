@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import "./App.css";
 import InputTodo from "./components/InputTodo";
 import TodoList from "./components/TodoList";
@@ -18,6 +18,14 @@ export default function App() {
     setValue("");
   };
 
+  const onClickDelte = useCallback(
+    (id) => {
+      let newTodoData = todoData.filter((todo) => todo.id !== id);
+      setTodoData(newTodoData);
+    },
+    [todoData]
+  );
+
   return (
     <div className="flex items-center justify-center w-screen h-screen bg-blue-100">
       <div className="w-full p-6 m-4 bg-white rounded shadow-lg lg:w-3/4 lg:max-w-lg">
@@ -25,7 +33,11 @@ export default function App() {
           <h1>Todo List</h1>
         </div>
         <InputTodo value={value} setValue={setValue} onSubmit={onSubmit} />
-        <TodoList todoData={todoData} setTodoData={setTodoData} />
+        <TodoList
+          todoData={todoData}
+          setTodoData={setTodoData}
+          onClickDelte={onClickDelte}
+        />
       </div>
     </div>
   );

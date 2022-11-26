@@ -1,12 +1,17 @@
 import React from "react";
 
 const Todo = React.memo(
-  ({ key, id, title, checked, todoData, setTodoData, provided, snapshot }) => {
-    const onClickDelte = (id) => {
-      let newTodoData = todoData.filter((todo) => todo.id !== id);
-      setTodoData(newTodoData);
-    };
-
+  ({
+    key,
+    id,
+    title,
+    checked,
+    todoData,
+    setTodoData,
+    provided,
+    snapshot,
+    onClickDelte,
+  }) => {
     const onChecked = (id) => {
       let newTodoData = todoData.map((todo) => {
         if (todo.id === id) {
