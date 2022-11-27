@@ -24,6 +24,7 @@ const Todo = React.memo(
       });
 
       setTodoData(newTodoData);
+      localStorage.setItem("todoData", JSON.stringify(newTodoData));
     };
 
     const onClickEdit = () => {
@@ -44,6 +45,7 @@ const Todo = React.memo(
         return todo;
       });
       setTodoData(newTodoData);
+      localStorage.setItem("todoData", JSON.stringify(newTodoData));
       setIsEditing(false);
     };
 

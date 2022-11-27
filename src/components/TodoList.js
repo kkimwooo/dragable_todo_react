@@ -16,6 +16,7 @@ const TodoList = React.memo(({ todoData, setTodoData, onClickDelte }) => {
     newTodoData.splice(result.destination.index, 0, reorederedItem);
 
     setTodoData(newTodoData);
+    localStorage.setItem("todoData", JSON.stringify(newTodoData));
   };
 
   return (

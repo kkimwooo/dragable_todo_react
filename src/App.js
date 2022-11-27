@@ -4,7 +4,11 @@ import InputTodo from "./components/InputTodo";
 import TodoList from "./components/TodoList";
 
 export default function App() {
-  const [todoData, setTodoData] = useState([]);
+  const [todoData, setTodoData] = useState(
+    localStorage.getItem("todoData")
+      ? JSON.parse(localStorage.getItem("todoData"))
+      : []
+  );
   const [value, setValue] = useState("");
   const onSubmit = (e) => {
     e.preventDefault();
@@ -15,6 +19,10 @@ export default function App() {
       checked: false,
     };
     setTodoData((prev) => [...prev, newTodoData]);
+    localStorage.setItem(
+      "todoData",
+      JSON.stringify([...todoData, newTodoData])
+    );
     setValue("");
   };
 
@@ -24,12 +32,14 @@ export default function App() {
     (id) => {
       let newTodoData = todoData.filter((todo) => todo.id !== id);
       setTodoData(newTodoData);
+      localStorage.setItem("todoData", JSON.stringify(newTodoData));
     },
     [todoData]
   );
 
   const handleRemoveClick = () => {
     setTodoData([]);
+    localStorage.setItem("todoData", JSON.stringify([]));
   };
 
   return (
